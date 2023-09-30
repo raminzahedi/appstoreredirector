@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>App Redirect</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .loading {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="loading">
+    <p>Redirecting...</p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const userAgent = navigator.userAgent;
+
+      if (/iPhone|iPad|iPod/i.test(userAgent)) {
+        // Redirect to Apple App Store
+        window.location.href = 'https://apps.apple.com/app/your-app-id';
+      } else if (/Android/i.test(userAgent)) {
+        // Redirect to Google Play Store
+        window.location.href = 'https://play.google.com/store/apps/details?id=your-package-name';
+      } else {
+        // Fallback content for non-mobile users
+        document.querySelector('.loading').innerHTML = `
+          <p>Not a mobile device. Manually select where to go:</p>
+          <a href="https://apps.apple.com/app/your-app-id">App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=your-package-name">Google Play</a>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>
